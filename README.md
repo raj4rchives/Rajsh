@@ -1,19 +1,36 @@
-# 370R JEE Advanced Tracker V5
+# Velora — AI Website Studio
 
-Features:
-- 30-day PDF study log (with expandable daily tracker)
-- Physics/Chemistry/Maths HW + Class Illustration combined in one column
-- Subject-wise DPP and PYQ tracking
-- Overall and subject dashboard
-- Automatic calendar-month phases (Phase 1, Phase 2, ...)
-- Monthly PDF report
-- JSON export/import backup
-- Editable JEE Advanced target date + live days-left countdown
+This package is a polished frontend prototype based on the uploaded JEE Tracker visual language: deep black surfaces, thin borders, warm gold accent, compact typography, rounded panels and restrained motion.
 
-Note: the default countdown date is 23 May 2027 as an editable planning date. JEE Advanced 2027 official date was not found on the official JEE Advanced site in this build; change the date when officially announced.
+## Included
+- Landing page
+- AI Builder with chat, live preview, device toggles, file explorer and simulated build logs
+- Template marketplace
+- Website details / rental CTA
+- Pricing
+- Customer dashboard
+- Domains
+- Analytics
+- Billing
+- Settings
+- Login / signup / password reset UI
+- Admin console
+- Responsive mobile navigation
 
-GitHub Pages: upload all files to repository root.
+## Run
+Open `index.html` directly in a browser, or serve the folder with any static HTTP server.
 
-- PDF export now includes 30 days.
-- Focus Mode has a Save button and restores an active timer after reload.
-- Focus timer requires at least 1 minute before saving.
+## Production architecture
+The UI intentionally keeps backend concerns separate. For a real deployment, replace the simulated actions with:
+- Next.js + TypeScript frontend
+- Node.js/TypeScript API
+- PostgreSQL + Prisma/Drizzle
+- Auth.js
+- S3-compatible object storage
+- LLM provider abstraction
+- Isolated build/deployment workers
+- Stripe/Razorpay payment webhooks
+- DNS/domain provider
+- Redis rate limiting and job queues
+
+Never execute generated/untrusted website code in the main application server. Generated projects should build in isolated containers/workers and deploy through a separate service.
