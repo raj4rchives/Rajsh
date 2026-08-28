@@ -1,21 +1,32 @@
-const pages=["dashboard","builder","websites","templates","domains","analytics","billing","settings"];
-const sites=[
- {name:"Urban Fitness",domain:"urbanfitness.com",plan:"Business",visitors:"12,480"},
- {name:"Velora Restaurant",domain:"velorarestaurant.com",plan:"Premium",visitors:"8,921"},
- {name:"Nova Realty",domain:"novarealty.demo",plan:"Starter",visitors:"4,306"},
- {name:"PixelCraft Agency",domain:"pixelcraft.demo",plan:"Business",visitors:"7,184"}
-];
-const templates=[
- ["Maison Noir","Restaurant"],["Iron District","Gym"],["Northline","Real Estate"],["Arc & Co.","Agency"],["Luma Stay","Hotel"],["Studio Eight","Portfolio"],["Orbit Labs","Startup"],["Aurelia","Salon"]
-];
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-function show(page){pages.forEach(p=>$("#page-"+p)?.classList.toggle("active",p===page));$$('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.page===page));$('#sidebar')?.classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});}
-function toast(msg){let t=$('#toast');if(!t){t=document.createElement('div');t.id='toast';Object.assign(t.style,{position:'fixed',right:'18px',bottom:'18px',zIndex:99,background:'#172033',color:'#fff',padding:'12px 16px',borderRadius:'10px',boxShadow:'0 12px 35px rgba(0,0,0,.18)',fontSize:'12px'});document.body.appendChild(t)}t.textContent=msg;t.style.opacity=1;clearTimeout(window.tt);window.tt=setTimeout(()=>t.style.opacity=0,2200)}
-function renderProjects(){const html=sites.map(s=>`<div class="project"><div class="project-thumb"></div><div class="project-info"><b>${s.name}</b><small>${s.domain} · ${s.plan}</small></div><span class="status">● LIVE</span><button class="secondary" onclick="toast('Opening ${s.name}')">Manage</button></div>`).join('');$('#projectList').innerHTML=html;$('#siteCards').innerHTML=sites.map(s=>`<div class="site-card"><div class="site-card-top"><div><h3 style="margin:0 0 4px">${s.name}</h3><small>${s.domain}</small></div><span class="status">● LIVE</span></div><div class="site-card-preview"></div><div style="display:flex;justify-content:space-between;align-items:center"><div><small>Plan</small><br><b>${s.plan}</b></div><div><small>Visitors</small><br><b>${s.visitors}</b></div></div><div class="site-card-actions" style="margin-top:15px"><button class="primary" onclick="show('builder')">Edit</button><button class="secondary" onclick="toast('Preview opened')">Preview</button><button class="secondary" onclick="show('analytics')">Analytics</button></div></div>`).join('')}
-function renderTemplates(){ $('#templateGrid').innerHTML=templates.map((t,i)=>`<div class="template-card"><div class="template-img"><span class="badge">PREMIUM</span></div><div class="template-body"><b>${t[0]}</b><small>${t[1]}</small><button class="secondary" onclick="useTemplate('${t[0]}')">Customize with AI</button></div></div>`).join('') }
-function useTemplate(name){show('builder');setTimeout(()=>{ $('#chatInput').value=`Customize the ${name} template for my business.`;generate();},100)}
-function renderBars(id,vals){$(id).innerHTML=vals.map(v=>`<div class="bar" style="height:${v}%"></div>`).join('')}
-function generate(){const input=$('#chatInput'),text=input.value.trim()||'Make the website more premium.';$('#chat').insertAdjacentHTML('beforeend',`<div class="msg user">${escapeHtml(text)}</div><div class="msg ai" id="thinking">Analyzing request…</div>`);input.value='';$('#chat').scrollTop=$('#chat').scrollHeight;$('#buildLogs').innerHTML='<div>• Analyzing request…</div><div>• Updating components…</div><div>• Running responsive checks…</div>';setTimeout(()=>{ $('#thinking')?.remove();$('#chat').insertAdjacentHTML('beforeend','<div class="msg ai">Done. I updated the affected components and the responsive design system.</div>');$('#buildLogs').innerHTML='<div class="success">✓ AI changes applied</div><div class="success">✓ Build successful</div><div>✓ Responsive checks passed</div><div>✓ Assets optimized</div>';toast('Website updated by AI');},1100)}
-function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function init(){renderProjects();renderTemplates();renderBars('#miniChart',[42,55,48,68,61,79,70,92,75,100]);renderBars('#bigChart',[25,35,31,44,52,48,64,60,75,68,82,79,91,86,100]);$$('.nav-item').forEach(b=>b.onclick=()=>show(b.dataset.page));$$('[data-go]').forEach(b=>b.onclick=()=>{let p=b.dataset.go;if(p==='pricing')return toast('Plan selector opened');show(p)});$('#generateBtn').onclick=generate;$('#regenerateBtn').onclick=()=>{toast('Regenerating website…');setTimeout(generate,600)};$('#publishBtn').onclick=()=>toast('Publish flow ready — connect billing/deployment backend');$('#undoBtn').onclick=()=>toast('Undo applied');$('#redoBtn').onclick=()=>toast('Redo applied');$('#previewBtn').onclick=()=>toast('Preview opened');$('#addDomain').onclick=()=>toast('Domain connection form opened');$('#saveSettings').onclick=()=>toast('Settings saved');$('#mobileMenu').onclick=()=>$('#sidebar').classList.toggle('open');$('#themeBtn').onclick=()=>$('#themeDrawer').classList.toggle('open');$('#closeTheme').onclick=()=>$('#themeDrawer').classList.remove('open');$$('.theme-swatch').forEach(b=>b.onclick=()=>{const colors={blue:'#2563eb',indigo:'#4f46e5',cyan:'#0891b2',violet:'#7c3aed'};document.documentElement.style.setProperty('--accent',colors[b.dataset.theme]);toast(`${b.textContent.trim()} theme applied`)});$$('.device-toggle button').forEach(b=>b.onclick=()=>{$$('.device-toggle button').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=$('#siteFrame');f.style.maxWidth=b.dataset.device==='mobile'?'390px':b.dataset.device==='tablet'?'760px':'none';f.style.marginLeft=b.dataset.device==='desktop'?'14px':'auto';f.style.marginRight=b.dataset.device==='desktop'?'14px':'auto';toast(`${b.textContent} preview`)})}
-document.addEventListener('DOMContentLoaded',init);
+const modal=document.getElementById("orderModal");
+const closeModal=()=>modal.classList.remove("show");
+function openOrder(mode){
+  modal.classList.add("show");
+  if(mode==="AI") document.getElementById("idea").focus();
+}
+document.getElementById("createOrder").onclick=()=>openOrder();
+document.getElementById("modalClose").onclick=closeModal;
+modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});
+document.querySelectorAll("#types button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#types button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected")});
+document.getElementById("menuBtn").onclick=()=>document.getElementById("mobileMenu").classList.toggle("show");
+document.getElementById("closeTop").onclick=()=>document.querySelector(".topbar").remove();
+
+let orders=JSON.parse(localStorage.getItem("webnest_orders")||"[]");
+function renderOrders(){
+  const list=document.getElementById("ordersList");
+  document.getElementById("activeCount").textContent=orders.filter(o=>o.status!=="Completed").length;
+  document.getElementById("pendingCount").textContent=orders.filter(o=>o.status==="Pending").length;
+  if(!orders.length){list.innerHTML=`<div class="empty"><div class="empty-icon">＋</div><h3>No projects yet.</h3><p>Your first professional website is just a few clicks away.</p><button class="btn primary" onclick="openOrder()">Create your first order →</button></div>`;return}
+  list.innerHTML=orders.slice().reverse().map(o=>`<div class="order-item">
+    <div class="order-symbol">✦</div><div><h3>${o.name}</h3><p>${o.id} · ${o.type} · ${o.date}</p></div>
+    <span class="status">${o.status}</span><span class="view">View order →</span>
+  </div>`).join("");
+}
+document.getElementById("submitOrder").onclick=()=>{
+  const type=document.querySelector("#types button.selected")?.textContent||"Business";
+  const idea=document.getElementById("idea").value.trim();
+  const order={id:"WN-"+Math.floor(100000+Math.random()*900000),name:idea?idea.slice(0,34)+(idea.length>34?"…":""):"New website project",type,status:"Pending",date:new Date().toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"})};
+  orders.push(order);localStorage.setItem("webnest_orders",JSON.stringify(orders));renderOrders();closeModal();document.getElementById("idea").value="";
+  alert("Order created successfully: "+order.id);
+};
+renderOrders();
