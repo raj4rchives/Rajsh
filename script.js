@@ -18,9 +18,8 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 form?.addEventListener("submit",e=>{e.preventDefault();success.style.display="block";form.reset();setTimeout(closeModal,2200)});
 
 function showToast(msg){toast.textContent=msg;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),2600)}
-document.querySelectorAll(".view-btn,.signup-btn,.dev-card .btn,.faq-grid .btn").forEach(btn=>btn.addEventListener("click",e=>{
+document.querySelectorAll(".view-btn,.dev-card .btn,.faq-grid .btn").forEach(btn=>btn.addEventListener("click",e=>{
   if(btn.closest(".website-card")) showToast("Website details page is ready to connect to your product database.");
-  else if(btn.classList.contains("signup-btn")) openModal();
   else showToast("This demo action is ready to connect to your backend.");
 }));
 document.querySelector(".announcement-close")?.addEventListener("click",e=>e.currentTarget.parentElement.remove());
