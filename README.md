@@ -1,13 +1,11 @@
-# Webnest Premium + Client Dashboard
+# Webnest Premium
 
-This ZIP now includes the original public Webnest marketplace landing page PLUS a post-login Client Dashboard.
+Includes:
+- Public Webnest landing page (`index.html`)
+- Premium client login page (`login.html`)
+- Post-login client dashboard (`dashboard.html`)
+- Separate dashboard CSS/JS
 
-## How it works
-- Click **Log in** on the public page.
-- The public landing page is hidden and the **Client Dashboard** opens.
-- Dashboard includes Create New Order, AI/template/custom options, stats, recent orders, inspiration and quick actions.
-- Created orders are persisted in browser localStorage under `webnest_client_orders`.
-- Click **Browse Websites** in the dashboard to return to the public marketplace.
+Demo login: any non-empty valid email + any non-empty password. The login stores a small demo session in localStorage and redirects to `dashboard.html`.
 
-## Important
-This is a frontend/demo integration. Replace localStorage with your real authentication, database, order API and payment system for production.
+For production, replace demo authentication with Firebase, Supabase, Auth0, or your own backend.

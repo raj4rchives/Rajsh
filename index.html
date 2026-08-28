@@ -32,7 +32,7 @@
       </div>
 
       <div class="nav-actions">
-        <button class="btn btn-ghost login-btn">Log in</button>
+        <a class="btn btn-ghost login-btn" href="login.html">Log in</a>
         <button class="btn btn-primary signup-btn">Get started <span>↗</span></button>
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
       </div>
@@ -245,86 +245,6 @@
       </div>
     </section>
   </main>
-
-
-<section id="clientDashboard" class="client-dashboard" hidden>
-  <div class="dashboard-wrap">
-    <div class="dash-welcome">
-      <div>
-        <div class="dash-eyebrow">CLIENT DASHBOARD</div>
-        <h1>Build something <span>great</span><br>today.</h1>
-        <p>Create a new website order, manage your projects, and keep everything in one place.</p>
-      </div>
-      <div class="dash-actions">
-        <button class="dash-btn dash-primary" id="dashCreateOrder">+ Create New Order</button>
-        <button class="dash-btn dash-secondary" id="dashBrowse">Browse Websites <b>→</b></button>
-      </div>
-    </div>
-
-    <div class="dash-stats">
-      <div><small>ACTIVE ORDERS</small><strong id="dashActive">0</strong><span>Currently in progress</span></div>
-      <div><small>WEBSITES</small><strong>0</strong><span>Ready to launch</span></div>
-      <div><small>PENDING ACTIONS</small><strong id="dashPending">0</strong><span>Needs your attention</span></div>
-      <div><small>TOTAL SPENT</small><strong>₹0</strong><span>Lifetime</span></div>
-    </div>
-
-    <div class="dash-create">
-      <div class="dash-kicker">01 / START A PROJECT</div>
-      <div class="dash-title-row"><div><h2>Start a new website.</h2><p>Choose the easiest way to turn your idea into a professional website.</p></div><span>✦</span></div>
-      <div class="dash-methods">
-        <article><i>01</i><b>⌕</b><h3>Start from a template</h3><p>Choose a ready-made website and customize it for your brand.</p><button data-order-mode="Template">Browse templates →</button></article>
-        <article class="dash-featured"><label>RECOMMENDED</label><i>02</i><b>✦</b><h3>Create with AI</h3><p>Describe your website in your own words and get a smart starting concept.</p><button data-order-mode="AI">Create with AI →</button></article>
-        <article><i>03</i><b>◇</b><h3>Custom website</h3><p>Have something specific in mind? Tell us exactly what you need.</p><button data-order-mode="Custom">Create custom order →</button></article>
-      </div>
-    </div>
-
-    <div class="dash-section" id="dashOrders">
-      <div class="dash-section-head"><div><div class="dash-kicker">02 / PROJECTS</div><h2>Recent orders</h2></div><button id="dashAllOrders">View all →</button></div>
-      <div id="dashOrdersList"></div>
-    </div>
-  </div>
-
-  <div class="dash-inspiration">
-    <div class="dashboard-wrap">
-      <div class="dash-kicker">03 / INSPIRATION</div>
-      <h2>Start with a design<br><span>you already love.</span></h2>
-      <div class="dash-sites">
-        <article><div class="dash-preview p1"><b>ASTER</b><em>Make your<br>mark.</em><button>Explore →</button></div><h3>Aster Studio <strong>₹8,999</strong></h3><p>Creative business website</p></article>
-        <article><div class="dash-preview p2"><b>MONO</b><em>Less noise.<br>More impact.</em><button>Explore →</button></div><h3>Mono Agency <strong>₹11,999</strong></h3><p>Modern agency website</p></article>
-        <article><div class="dash-preview p3"><b>FORMA</b><em>Built for<br>bold brands.</em><button>Explore →</button></div><h3>Forma Commerce <strong>₹14,999</strong></h3><p>E-commerce website</p></article>
-      </div>
-    </div>
-  </div>
-
-  <div class="dashboard-wrap dash-quick">
-    <div class="dash-kicker">04 / QUICK ACTIONS</div><h2>Everything in one place.</h2>
-    <div class="dash-quick-grid">
-      <article><b>My Orders</b><p>Track active projects and previous orders.</p><span>→</span></article>
-      <article><b>Websites</b><p>View and manage your launched websites.</p><span>→</span></article>
-      <article><b>Messages</b><p>Chat with the Webnest team.</p><span>→</span></article>
-      <article><b>Billing</b><p>Manage invoices and payments.</p><span>→</span></article>
-    </div>
-  </div>
-</section>
-
-<div class="dash-order-modal" id="dashOrderModal" hidden>
-  <div class="dash-modal-backdrop"></div>
-  <div class="dash-modal-box">
-    <button class="dash-modal-close" id="dashModalClose">×</button>
-    <div class="dash-kicker">NEW ORDER</div>
-    <h2>Tell us what you're building.</h2>
-    <p>We'll turn your idea into a clear website plan.</p>
-    <div class="dash-steps"><b>01</b><span></span><b>02</b><span></span><b>03</b></div>
-    <label>Website type</label>
-    <div class="dash-choices" id="dashTypes">
-      <button>Business</button><button>Portfolio</button><button>E-commerce</button><button>Restaurant</button><button>Agency</button><button>SaaS</button>
-    </div>
-    <label>Your idea</label>
-    <textarea id="dashIdea" placeholder="Example: I need a modern clothing business website with products, WhatsApp ordering and a contact page."></textarea>
-    <div class="dash-ai-note">✦ AI will turn your description into pages, features and a recommended plan.</div>
-    <button class="dash-btn dash-primary dash-full" id="dashSubmitOrder">Continue →</button>
-  </div>
-</div>
 
   <footer class="footer">
     <div class="container footer-top">
