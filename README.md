@@ -1,15 +1,13 @@
-# 370R JEE Advanced Tracker V5
+# CartyWeb — AI Website Builder
 
-Features:
-- Unlimited daily study log
-- Physics/Chemistry/Maths HW + Class Illustration combined in one column
-- Subject-wise DPP and PYQ tracking
-- Overall and subject dashboard
-- Automatic calendar-month phases (Phase 1, Phase 2, ...)
-- Monthly PDF report
-- JSON export/import backup
-- Editable JEE Advanced target date + live days-left countdown
+Founder: Raj Sharma
 
-Note: the default countdown date is 23 May 2027 as an editable planning date. JEE Advanced 2027 official date was not found on the official JEE Advanced site in this build; change the date when officially announced.
+This version preserves the existing CartyWeb visual theme and adds the frontend prototype for:
+- Prompt-based AI website builder
+- AI preview/edit/launch workflow
+- Monthly website rental
+- One-time source-code license
+- Project persistence in localStorage for demo use
 
-GitHub Pages: upload all files to repository root.
+## Production requirements
+Move AI generation, authentication, payments, hosting/deployment and license validation to a secure backend. Never expose an AI provider secret key in browser JavaScript.

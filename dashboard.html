@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CartyWeb — Client Dashboard</title>
+  <title>CartyWeb — AI Website Builder</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -15,32 +15,48 @@
   <header class="nav">
     <a class="brand" href="#"><span class="brand-mark"><i></i><i></i><i></i></span><span>cartyweb</span></a>
     <nav class="desktop-nav">
-      <a href="#dashboard">Dashboard</a><a href="#orders">My Orders</a><a href="#websites">Websites</a><a href="#messages">Messages</a><a href="#billing">Billing</a>
+      <a href="#dashboard">Dashboard</a><a href="#ai-builder">AI Builder</a><a href="#orders">My Projects</a><a href="#billing">Plans</a><a href="#messages">Messages</a>
     </nav>
     <div class="profile"><span class="avatar">RS</span><span class="user-name">Raj Sharma</span><span class="chev">⌄</span></div>
     <button class="menu" id="menuBtn">☰</button>
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#dashboard">Dashboard</a><a href="#orders">My Orders</a><a href="#websites">Websites</a><a href="#messages">Messages</a><a href="#billing">Billing</a>
+    <a href="#dashboard">Dashboard</a><a href="#ai-builder">AI Builder</a><a href="#orders">My Projects</a><a href="#billing">Plans</a><a href="#messages">Messages</a>
   </div>
 
   <main id="dashboard">
     <section class="hero wrap">
       <div class="eyebrow">CLIENT DASHBOARD</div>
       <h1>Build something <span>great</span><br>today.</h1>
-      <p>Create a new website order, manage your projects, and keep everything in one place.</p>
+      <p>Describe your idea. Let AI build the website, preview it, and launch it with a monthly rental or buy the source with a one-time license.</p>
       <div class="hero-actions">
-        <button class="btn primary" id="createOrder">+ Create New Order</button>
-        <button class="btn secondary" id="browseBtn">Browse Websites <b>→</b></button>
+        <button class="btn primary" id="createOrder">✦ Build with AI</button>
+        <button class="btn secondary" id="browseBtn">View My Projects <b>→</b></button>
       </div>
     </section>
 
     <section class="wrap stats">
       <div class="stat"><span>ACTIVE ORDERS</span><strong id="activeCount">0</strong><small>Currently in progress</small></div>
-      <div class="stat"><span>WEBSITES</span><strong>0</strong><small>Ready to launch</small></div>
+      <div class="stat"><span>AI WEBSITES</span><strong id="siteCount">0</strong><small>Generated projects</small></div>
       <div class="stat"><span>PENDING ACTIONS</span><strong id="pendingCount">0</strong><small>Needs your attention</small></div>
       <div class="stat"><span>TOTAL SPENT</span><strong>₹0</strong><small>Lifetime</small></div>
+    </section>
+
+    <section class="wrap ai-builder" id="ai-builder">
+      <div class="section-kicker">01 / AI WEBSITE BUILDER</div>
+      <div class="split-heading"><div><h2>Build from a prompt.</h2><p>Tell CartyWeb what you want. The builder creates a complete starting website and lets you refine it with AI.</p></div><span class="spark">✦</span></div>
+      <div class="ai-panel">
+        <div class="ai-input-wrap"><label for="aiPrompt">Your website prompt</label><textarea id="aiPrompt" rows="5" placeholder="Example: Create a premium dark portfolio for a full-stack developer. Include Home, About, Projects, Skills and Contact sections with smooth animations."></textarea>
+        <div class="ai-options"><select id="aiType"><option>Business</option><option>Portfolio</option><option>E-commerce</option><option>SaaS</option><option>Landing page</option></select><select id="aiStyle"><option>Modern</option><option>Minimal</option><option>Premium</option><option>Bold</option></select><button class="btn primary" id="generateAI">✦ Generate website</button></div></div>
+        <div class="ai-preview" id="aiPreview"><div class="preview-placeholder"><span>✦</span><h3>AI preview</h3><p>Your generated website will appear here.</p></div></div>
+      </div>
+      <div class="ai-actions" id="aiActions" hidden><button class="btn secondary" id="editAI">✎ Edit with AI</button><button class="btn primary" id="launchAI">🚀 Launch website</button><button class="btn secondary" id="sourceAI">⇩ Buy source · One-time license</button></div>
+    </section>
+
+    <section class="wrap pricing-mini" id="billing">
+      <div class="section-kicker">02 / RENT OR OWN</div><div class="split-heading"><div><h2>Choose how you launch.</h2><p>Rent a hosted website monthly, or purchase the generated source with a one-time license.</p></div></div>
+      <div class="method-grid"><article class="method featured"><div class="recommended">MOST POPULAR</div><div class="num">01</div><div class="icon">↻</div><h3>Website Rental</h3><p>Hosted live website, publishing, updates and AI editing while your subscription is active.</p><button onclick="choosePlan('rent')">Start rental <b>→</b></button></article><article class="method"><div class="num">02</div><div class="icon">◇</div><h3>Source License</h3><p>One-time purchase for the generated project source code and a unique CartyWeb license.</p><button onclick="choosePlan('license')">Buy source <b>→</b></button></article></div>
     </section>
 
     <section class="wrap create-card">
@@ -60,7 +76,7 @@
     </section>
 
     <section class="wrap orders" id="orders">
-      <div class="section-head"><div><div class="section-kicker">02 / PROJECTS</div><h2>Recent orders</h2></div><button class="text-btn" onclick="openOrder()">View all →</button></div>
+      <div class="section-head"><div><div class="section-kicker">03 / PROJECTS</div><h2>Recent orders</h2></div><button class="text-btn" onclick="openOrder()">View all →</button></div>
       <div id="ordersList" class="orders-list">
         <div class="empty"><div class="empty-icon">＋</div><h3>No projects yet.</h3><p>Your first professional website is just a few clicks away.</p><button class="btn primary" onclick="openOrder()">Create your first order →</button></div>
       </div>
@@ -68,7 +84,7 @@
 
     <section class="inspire" id="websites">
       <div class="wrap">
-        <div class="section-kicker">03 / INSPIRATION</div><h2>Start with a design<br><span>you already love.</span></h2>
+        <div class="section-kicker">04 / INSPIRATION</div><h2>Start with a design<br><span>you already love.</span></h2>
         <div class="site-grid">
           <div class="site-card"><div class="preview preview-a"><b>ASTER</b><em>Make your<br>mark.</em><button>Explore →</button></div><div class="site-meta"><div><h3>Aster Studio</h3><p>Creative business website</p></div><strong>₹8,999</strong></div></div>
           <div class="site-card"><div class="preview preview-b"><b>MONO</b><em>Less noise.<br>More impact.</em><button>Explore →</button></div><div class="site-meta"><div><h3>Mono Agency</h3><p>Modern agency website</p></div><strong>₹11,999</strong></div></div>
@@ -78,7 +94,7 @@
     </section>
 
     <section class="wrap quick" id="messages">
-      <div class="section-kicker">04 / QUICK ACTIONS</div><h2>Everything in one place.</h2>
+      <div class="section-kicker">05 / QUICK ACTIONS</div><h2>Everything in one place.</h2>
       <div class="quick-grid">
         <div><b>My Orders</b><p>Track active projects and previous orders.</p><span>→</span></div>
         <div><b>Websites</b><p>View and manage your launched websites.</p><span>→</span></div>
@@ -86,6 +102,7 @@
         <div><b>Billing</b><p>Manage invoices and payments.</p><span>→</span></div>
       </div>
     </section>
+  <footer class="wrap founder">CartyWeb · AI Website Builder · <strong>Founder: Raj Sharma</strong></footer>
   </main>
 
   <div class="modal" id="orderModal">

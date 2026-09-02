@@ -30,3 +30,16 @@ document.getElementById("submitOrder").onclick=()=>{
   alert("Order created successfully: "+order.id);
 };
 renderOrders();
+
+
+// CartyWeb AI Builder demo layer. Replace generateWebsite() with a secure server-side AI API in production.
+const aiPrompt=document.getElementById('aiPrompt'), aiPreview=document.getElementById('aiPreview'), aiActions=document.getElementById('aiActions'), siteCount=document.getElementById('siteCount');
+let generatedSite=JSON.parse(localStorage.getItem('cartyweb_generated_site')||'null');
+function renderGenerated(){if(!generatedSite)return; aiPreview.innerHTML=`<div class="generated-preview"><small>CARTYWEB AI PREVIEW · ${generatedSite.type}</small><h2>${escapeHTML(generatedSite.title)}</h2><p>${escapeHTML(generatedSite.description)}</p><span class="mock-btn">Explore website →</span></div>`;aiActions.hidden=false;siteCount.textContent='1';}
+function escapeHTML(x){return String(x).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+document.getElementById('generateAI')?.addEventListener('click',()=>{const prompt=aiPrompt.value.trim();if(!prompt){alert('Enter a website prompt first.');return}const title=prompt.replace(/^(create|build|make)\s+/i,'').slice(0,48)||'My AI Website';generatedSite={title,type:document.getElementById('aiType').value,description:'AI-generated starting concept based on your prompt.',prompt,createdAt:new Date().toISOString()};localStorage.setItem('cartyweb_generated_site',JSON.stringify(generatedSite));renderGenerated();alert('AI website generated. Connect your server-side AI API for real code generation.');});
+document.getElementById('editAI')?.addEventListener('click',()=>{aiPrompt.focus();aiPrompt.select();});
+document.getElementById('launchAI')?.addEventListener('click',()=>{if(!generatedSite)return;localStorage.setItem('cartyweb_launch_status','active');alert('Launch requested. In production this button will deploy the project to your hosting provider.');});
+document.getElementById('sourceAI')?.addEventListener('click',()=>choosePlan('license'));
+function choosePlan(plan){localStorage.setItem('cartyweb_checkout_intent',plan);alert(plan==='rent'?'Rental checkout selected — connect your payment gateway to activate monthly hosting.':'Source license checkout selected — connect your payment gateway to issue the one-time license and source download.');}
+renderGenerated();
